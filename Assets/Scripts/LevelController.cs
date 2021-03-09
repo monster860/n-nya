@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelController : MonoBehaviour
 {
     public static LevelController instance { get; private set;}
-    Animator animator;
+    public Animator animator;
     void Awake()
     {
         instance = this;

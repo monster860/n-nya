@@ -6,6 +6,7 @@ public class AnimatorTrigger : MonoBehaviour
 {
     public Animator animator = null;
     public string parameterName = "";
+    public string catboyParameterName = "";
     public bool useEnterValue = true;
     public int enterValue = 1;
     public bool useExitValue = true;
@@ -27,16 +28,23 @@ public class AnimatorTrigger : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        Debug.Log("Entered");
-        if(collider.gameObject.GetComponent<PlayerController>() && useEnterValue)
+        if(collider.gameObject.GetComponent<PlayerController>() && useEnterValue && parameterName != "")
         {
             animator.SetInteger(parameterName, enterValue);
         }
+        if(collider.gameObject.GetComponent<CatboyController>() && useEnterValue && catboyParameterName != "")
+        {
+            animator.SetInteger(catboyParameterName, enterValue);
+        }
     }
     void OnTriggerExit2D(Collider2D collider) {
-        if(collider.gameObject.GetComponent<PlayerController>() && useExitValue)
+        if(collider.gameObject.GetComponent<PlayerController>() && useExitValue && parameterName != "")
         {
             animator.SetInteger(parameterName, exitValue);
+        }
+        if(collider.gameObject.GetComponent<CatboyController>() && useExitValue && catboyParameterName != "")
+        {
+            animator.SetInteger(catboyParameterName, exitValue);
         }
     }
 }

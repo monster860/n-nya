@@ -53,3 +53,6 @@ TagManager:
   - name: Overlay
     uniqueID: 2220699343
     locked: 0
+  - name: CameraFade
+    uniqueID: 3759786375
+    locked: 0
