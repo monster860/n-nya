@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - Character
-  - 
+  - Objects
   - 
   - 
   - 
@@ -41,14 +41,17 @@ TagManager:
   - name: Bg
     uniqueID: 1831969745
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: BgObjs
+    uniqueID: 1166641265
     locked: 0
   - name: Character
     uniqueID: 2721297001
     locked: 0
   - name: Catboy
     uniqueID: 2188691991
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Overlay
     uniqueID: 2220699343

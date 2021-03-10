@@ -12,6 +12,8 @@ public class WhirringSound : MonoBehaviour
     public float oscPeriod = 3.0f;
     public float oscState = 0.0f;
     public float oscAmplitude = 0.05f;
+    public GameObject spaceThingy;
+    public Vector3 spaceThingyInitialPos;
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -19,7 +21,9 @@ public class WhirringSound : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(spaceThingy) {
+            spaceThingyInitialPos = spaceThingy.transform.position;
+        }
     }
 
     // Update is called once per frame
@@ -39,5 +43,9 @@ public class WhirringSound : MonoBehaviour
             audioSource.volume = state;
         }
         audioSource.pitch = state * oscMult;
+        if(spaceThingy) { // shitcode because uh yeah
+            spaceThingy.transform.position += Vector3.right * state * Time.deltaTime * 32;
+            if(spaceThingy.transform.position.x > spaceThingyInitialPos.x + 32.0f) spaceThingy.transform.position += Vector3.left * 32.0f;
+        }
     }
 }

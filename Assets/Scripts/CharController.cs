@@ -13,6 +13,8 @@ public class CharController : MonoBehaviour
     Rigidbody2D rigidbody2d;
     public BoxCollider2D floorSense;
     public bool faceRight = false;
+
+    public Pickupable heldObject;
     void Awake()
     {
         animator = GetComponent<Animator>();

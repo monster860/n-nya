@@ -20,6 +20,7 @@ public class Door : MonoBehaviour
     public AudioClip closeClip;
     public string lockedTrigger;
     public Door parentDoor;
+    public bool parentInverse;
 
     void Awake()
     {
@@ -41,7 +42,9 @@ public class Door : MonoBehaviour
     void Update()
     {
         if(parentDoor) {
-            isOpen = parentDoor.isOpen;
+            bool targetOpen = parentInverse ? !parentDoor.isOpen : parentDoor.isOpen;
+            if(targetOpen && !isOpen) Open();
+            if(!targetOpen && isOpen) Close();
         }
         bool changed = false;
         if(isOpen && openness < 1) {
@@ -85,6 +88,17 @@ public class Door : MonoBehaviour
         } else {
             if(!isOpen) Open();
             else Close();
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D coll) {
+        if(coll.gameObject == CatboyController.instance.gameObject) {
+            if(parentDoor && !parentInverse && !parentDoor.isOpen && !parentDoor.locked)
+                parentDoor.Open();
+            else if(parentDoor && parentInverse && parentDoor.isOpen && !parentDoor.locked)
+                parentDoor.Close();
+            else if(!isOpen && !locked)
+                Open();
         }
     }
 }
